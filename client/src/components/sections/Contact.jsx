@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 
 const Contact = ({ handleWhatsAppClick }) => {
@@ -7,7 +7,7 @@ const Contact = ({ handleWhatsAppClick }) => {
             <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 to-transparent" />
 
             <div className="max-w-7xl mx-auto relative">
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -19,19 +19,19 @@ const Contact = ({ handleWhatsAppClick }) => {
                         </span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
-                </motion.div>
+                </Motion.div>
 
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.p
+                    <Motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         className="text-xl text-gray-300 mb-8"
                     >
                         ¿Listo para comenzar tu transformación? Comunícate directamente con Kevin vía WhatsApp para personalizar tu plan de entrenamiento.
-                    </motion.p>
+                    </Motion.p>
 
-                    <motion.div
+                    <Motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
@@ -49,7 +49,7 @@ const Contact = ({ handleWhatsAppClick }) => {
                             Comunícate directamente con Kevin para resolver tus dudas y comenzar tu transformación.
                         </p>
 
-                        <motion.button
+                        <Motion.button
                             onClick={handleWhatsAppClick}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -57,8 +57,8 @@ const Contact = ({ handleWhatsAppClick }) => {
                         >
                             <MessageCircle size={22} />
                             <span>Enviar mensaje por WhatsApp</span>
-                        </motion.button>
-                    </motion.div>
+                        </Motion.button>
+                    </Motion.div>
                 </div>
             </div>
         </section>

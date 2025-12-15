@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Smartphone, Target, Heart, MessageCircle } from 'lucide-react';
 
 const Services = ({ handleWhatsAppClick }) => {
@@ -7,7 +7,7 @@ const Services = ({ handleWhatsAppClick }) => {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(188,19,254,0.1),transparent_40%)]" />
 
             <div className="max-w-7xl mx-auto relative">
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -19,7 +19,7 @@ const Services = ({ handleWhatsAppClick }) => {
                         </span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
-                </motion.div>
+                </Motion.div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {[
@@ -42,7 +42,7 @@ const Services = ({ handleWhatsAppClick }) => {
                             price: "Desde $299/mes"
                         }
                     ].map((service, index) => (
-                        <motion.div
+                        <Motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -74,17 +74,17 @@ const Services = ({ handleWhatsAppClick }) => {
                                     </p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </Motion.div>
                     ))}
                 </div>
 
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     className="mt-16 text-center"
                 >
-                    <motion.button
+                    <Motion.button
                         onClick={handleWhatsAppClick}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -92,8 +92,8 @@ const Services = ({ handleWhatsAppClick }) => {
                     >
                         <MessageCircle size={22} />
                         <span>Comprar Plan por WhatsApp</span>
-                    </motion.button>
-                </motion.div>
+                    </Motion.button>
+                </Motion.div>
             </div>
         </section>
     );

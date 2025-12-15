@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Menu, X, MessageCircle } from 'lucide-react';
 
 const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, handleWhatsAppClick }) => {
@@ -8,7 +8,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, ha
         <>
             <nav className="fixed w-full z-50 px-4 py-4 backdrop-blur-sm bg-[rgba(10,10,10,0.9)] border-b border-purple-900/30">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <motion.div
+                    <Motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="flex items-center space-x-2"
@@ -19,7 +19,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, ha
                         <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600">
                             DROLEAN
                         </span>
-                    </motion.div>
+                    </Motion.div>
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-8">
@@ -34,7 +34,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, ha
                             >
                                 {section.charAt(0).toUpperCase() + section.slice(1)}
                                 {currentSection === section && (
-                                    <motion.div
+                                    <Motion.div
                                         layoutId="navbar-indicator"
                                         className="absolute -bottom-1 left-0 w-full h-0.5 bg-purple-400"
                                         initial={false}
@@ -63,7 +63,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, ha
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="fixed top-16 left-0 w-full bg-[#0a0a0a] border-b border-purple-900/30 backdrop-blur-sm z-40"
@@ -89,7 +89,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, ha
                             <span>Contactar por WhatsApp</span>
                         </button>
                     </div>
-                </motion.div>
+                </Motion.div>
             )}
         </>
     );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Send, CheckCircle, MessageCircle } from 'lucide-react';
 
 const Anamnesis = ({ handleWhatsAppClick }) => {
@@ -15,18 +15,29 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
         phone: ''
     });
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState('');
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // In a real app, this would send data to Supabase
-        setIsFormSubmitted(true);
-        setTimeout(() => {
-            setIsFormSubmitted(false);
+        setSubmitError('');
+        setIsSubmitting(true);
+        try {
+            const base = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+            const res = await fetch(`${base}/anamnesis`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            if (!res.ok) {
+                throw new Error('Error al enviar el formulario');
+            }
+            setIsFormSubmitted(true);
             setFormData({
                 name: '',
                 age: '',
@@ -38,7 +49,15 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
                 email: '',
                 phone: ''
             });
-        }, 5000);
+            setTimeout(() => {
+                setIsFormSubmitted(false);
+            }, 5000);
+        } catch (_E) {
+            console.error(_E);
+            setSubmitError('Ocurrió un error al enviar tu información. Inténtalo de nuevo.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -46,7 +65,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(188,19,254,0.1),transparent_40%)]" />
 
             <div className="max-w-7xl mx-auto relative">
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -58,9 +77,9 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
                         </span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
-                </motion.div>
+                </Motion.div>
 
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -181,18 +200,22 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
                                 />
                             </div>
 
-                            <motion.button
+                            {submitError && (
+                                <p className="text-red-400">{submitError}</p>
+                            )}
+                            <Motion.button
                                 type="submit"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="w-full mt-6 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg font-bold text-lg flex items-center justify-center space-x-2 hover:shadow-lg hover:shadow-purple-500/30 transition-all"
+                                className="w-full mt-6 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg font-bold text-lg flex items-center justify-center space-x-2 hover:shadow-lg hover:shadow-purple-500/30 transition-all disabled:opacity-60"
+                                disabled={isSubmitting}
                             >
                                 <Send size={22} />
-                                <span>Enviar información</span>
-                            </motion.button>
+                                <span>{isSubmitting ? 'Enviando...' : 'Enviar información'}</span>
+                            </Motion.button>
                         </form>
                     ) : (
-                        <motion.div
+                        <Motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             className="text-center py-12"
@@ -206,7 +229,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
                             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
                                 Gracias por completar tu anamnesis. Kevin revisará tu información y se pondrá en contacto contigo vía WhatsApp para continuar con tu transformación.
                             </p>
-                            <motion.button
+                            <Motion.button
                                 onClick={handleWhatsAppClick}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -214,10 +237,10 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
                             >
                                 <MessageCircle size={22} />
                                 <span>Contactar por WhatsApp</span>
-                            </motion.button>
-                        </motion.div>
+                            </Motion.button>
+                        </Motion.div>
                     )}
-                </motion.div>
+                </Motion.div>
             </div>
         </section>
     );

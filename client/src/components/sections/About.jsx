@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Brain, Target, Zap, Shield, MessageCircle, ChevronRight } from 'lucide-react';
 
 const About = ({ handleWhatsAppClick }) => {
@@ -6,7 +6,7 @@ const About = ({ handleWhatsAppClick }) => {
         <section id="about" className="py-24 px-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 to-transparent" />
             <div className="max-w-7xl mx-auto relative">
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -18,10 +18,10 @@ const About = ({ handleWhatsAppClick }) => {
                         </span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
-                </motion.div>
+                </Motion.div>
 
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <motion.div
+                    <Motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -51,9 +51,9 @@ const About = ({ handleWhatsAppClick }) => {
 
                         {/* Decorative Elements */}
                         <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500 rounded-full mix-blend-screen filter blur-2xl opacity-20" />
-                    </motion.div>
+                    </Motion.div>
 
-                    <motion.div
+                    <Motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -73,7 +73,7 @@ const About = ({ handleWhatsAppClick }) => {
                                 { icon: <Zap size={24} />, text: "Metodología de vanguardia" },
                                 { icon: <Shield size={24} />, text: "Seguridad y adaptación personal" }
                             ].map((item, index) => (
-                                <motion.div
+                                <Motion.div
                                     key={index}
                                     initial={{ opacity: 0, x: 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
@@ -85,11 +85,11 @@ const About = ({ handleWhatsAppClick }) => {
                                         {item.icon}
                                     </div>
                                     <p className="text-gray-300 text-lg">{item.text}</p>
-                                </motion.div>
+                                </Motion.div>
                             ))}
                         </div>
 
-                        <motion.button
+                        <Motion.button
                             onClick={handleWhatsAppClick}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -98,8 +98,8 @@ const About = ({ handleWhatsAppClick }) => {
                             <MessageCircle size={20} />
                             <span>Conversemos por WhatsApp</span>
                             <ChevronRight size={18} />
-                        </motion.button>
-                    </motion.div>
+                        </Motion.button>
+                    </Motion.div>
                 </div>
             </div>
         </section>

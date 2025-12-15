@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Star, MessageCircle } from 'lucide-react';
 
 const Results = ({ handleWhatsAppClick }) => {
@@ -7,7 +7,7 @@ const Results = ({ handleWhatsAppClick }) => {
             <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 to-transparent" />
 
             <div className="max-w-7xl mx-auto relative">
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -19,11 +19,11 @@ const Results = ({ handleWhatsAppClick }) => {
                         </span>
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
-                </motion.div>
+                </Motion.div>
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {[1, 2, 3].map((result, index) => (
-                        <motion.div
+                        <Motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -65,11 +65,11 @@ const Results = ({ handleWhatsAppClick }) => {
                                     <span>Después</span>
                                 </div>
                             </div>
-                        </motion.div>
+                        </Motion.div>
                     ))}
                 </div>
 
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -78,7 +78,7 @@ const Results = ({ handleWhatsAppClick }) => {
                     <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
                         Cada transformación comienza con una decisión mental. Nuestro compromiso es guiarte en cada paso del camino con tecnología y disciplina.
                     </p>
-                    <motion.button
+                    <Motion.button
                         onClick={handleWhatsAppClick}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -86,8 +86,8 @@ const Results = ({ handleWhatsAppClick }) => {
                     >
                         <MessageCircle size={22} />
                         <span>Inicia tu transformación</span>
-                    </motion.button>
-                </motion.div>
+                    </Motion.button>
+                </Motion.div>
             </div>
         </section>
     );

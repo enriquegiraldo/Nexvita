@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Zap, MessageCircle, ArrowDown } from 'lucide-react';
 
 const Hero = ({ scrollToSection, handleWhatsAppClick }) => {
@@ -15,7 +15,7 @@ const Hero = ({ scrollToSection, handleWhatsAppClick }) => {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f20_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f20_1px,transparent_1px)] bg-[size:24px_24px]" />
 
             <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
@@ -33,7 +33,7 @@ const Hero = ({ scrollToSection, handleWhatsAppClick }) => {
                         Capacidad. Valor. Voluntad.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <motion.button
+                        <Motion.button
                             onClick={() => scrollToSection('anamnesis')}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -41,8 +41,8 @@ const Hero = ({ scrollToSection, handleWhatsAppClick }) => {
                         >
                             <Zap size={20} />
                             <span>Comenzar Anamnesis</span>
-                        </motion.button>
-                        <motion.button
+                        </Motion.button>
+                        <Motion.button
                             onClick={handleWhatsAppClick}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -50,11 +50,11 @@ const Hero = ({ scrollToSection, handleWhatsAppClick }) => {
                         >
                             <MessageCircle size={20} />
                             <span>WhatsApp</span>
-                        </motion.button>
+                        </Motion.button>
                     </div>
-                </motion.div>
+                </Motion.div>
 
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
@@ -64,7 +64,7 @@ const Hero = ({ scrollToSection, handleWhatsAppClick }) => {
                         <span>Explorar</span>
                         <ArrowDown size={18} className="animate-bounce" />
                     </div>
-                </motion.div>
+                </Motion.div>
             </div>
         </section>
     );

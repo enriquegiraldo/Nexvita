@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "source": "server",
+    "runtime": "nodejs18"
+  },
+  "ignore": [
+    "**/node_modules/**",
+    "**/.*/**"
+  ]
+}
+
