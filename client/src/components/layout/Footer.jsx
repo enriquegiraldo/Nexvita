@@ -1,20 +1,90 @@
-const Footer = () => {
+import { motion as Motion } from 'framer-motion';
+import { Instagram, Facebook, Youtube, Twitter, MessageCircle } from 'lucide-react';
+
+const Footer = ({ handleWhatsAppClick }) => {
+    const socialLinks = [
+        { icon: Instagram, url: 'https://instagram.com/fitdrolean', label: 'Instagram' },
+        { icon: Facebook, url: 'https://facebook.com/fitdrolean', label: 'Facebook' },
+        { icon: Youtube, url: 'https://youtube.com/@fitdrolean', label: 'YouTube' },
+        { icon: Twitter, url: 'https://twitter.com/fitdrolean', label: 'Twitter' },
+    ];
+
     return (
-        <footer className="py-12 px-4 bg-gradient-to-t from-[#0a0a0a] to-[#111] border-t border-purple-900/30">
-            <div className="max-w-7xl mx-auto text-center">
-                <div className="flex justify-center mb-6">
-                    <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-purple-400 rounded-full flex items-center justify-center">
-                        <span className="font-bold text-white text-xl">D</span>
+        <footer className="py-12 px-4 bg-gradient-to-t from-[#0d1117] to-[#161b22] border-t border-brand-purple-600/30">
+            <div className="max-w-7xl mx-auto">
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
+                    {/* Brand Section */}
+                    <div className="text-center md:text-left">
+                        <div className="flex items-center justify-center md:justify-start space-x-3 mb-4">
+                            <div className="w-12 h-12 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-lg flex items-center justify-center shadow-lg shadow-brand-purple-500/30">
+                                <span className="font-bold text-white text-xl">F</span>
+                            </div>
+                            <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 via-brand-neon-green-neon to-brand-purple-600">
+                                fitdrolean
+                            </span>
+                        </div>
+                        <p className="text-brand-silver-400 text-sm">
+                            Transformación tecnológica humana. Tu sistema de entrenamiento personalizado.
+                        </p>
+                    </div>
+
+                    {/* Quick Links */}
+                    <div className="text-center">
+                        <h3 className="font-semibold text-brand-silver-200 mb-4">Enlaces Rápidos</h3>
+                        <ul className="space-y-2">
+                            {['about', 'services', 'results', 'anamnesis', 'contact'].map((link) => (
+                                <li key={link}>
+                                    <a
+                                        href={`#${link}`}
+                                        className="text-brand-silver-400 hover:text-brand-purple-400 transition-colors text-sm"
+                                    >
+                                        {link.charAt(0).toUpperCase() + link.slice(1)}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Social Media */}
+                    <div className="text-center md:text-right">
+                        <h3 className="font-semibold text-brand-silver-200 mb-4">Síguenos</h3>
+                        <div className="flex justify-center md:justify-end space-x-4">
+                            {socialLinks.map((social, index) => {
+                                const Icon = social.icon;
+                                return (
+                                    <Motion.a
+                                        key={index}
+                                        href={social.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        className="text-brand-silver-400 hover:text-brand-neon-green-neon transition-colors"
+                                        aria-label={social.label}
+                                    >
+                                        <Icon size={24} />
+                                    </Motion.a>
+                                );
+                            })}
+                        </div>
+                        <button
+                            onClick={handleWhatsAppClick}
+                            className="mt-4 px-4 py-2 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-lg font-medium flex items-center justify-center md:justify-end space-x-2 mx-auto md:mx-0 shadow-lg shadow-brand-purple-500/30 hover:opacity-90 transition-opacity"
+                        >
+                            <MessageCircle size={18} />
+                            <span className="text-sm">WhatsApp</span>
+                        </button>
                     </div>
                 </div>
 
-                <p className="text-gray-400 mb-4">
-                    DROLEAN © {new Date().getFullYear()} - Transformación tecnológica humana
-                </p>
-
-                <p className="text-gray-500 text-sm max-w-2xl mx-auto">
-                    Todos los derechos reservados. Los resultados pueden variar dependiendo del compromiso y seguimiento del plan personalizado.
-                </p>
+                <div className="border-t border-brand-silver-700 pt-6 text-center">
+                    <p className="text-brand-silver-400 mb-2">
+                        fitdrolean © {new Date().getFullYear()} - Transformación tecnológica humana
+                    </p>
+                    <p className="text-brand-silver-500 text-xs max-w-2xl mx-auto">
+                        Todos los derechos reservados. Los resultados pueden variar dependiendo del compromiso y seguimiento del plan personalizado.
+                    </p>
+                </div>
             </div>
         </footer>
     );
