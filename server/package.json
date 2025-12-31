@@ -17,7 +17,8 @@
     "express": "^5.2.1",
     "firebase-functions": "^4.8.0",
     "nodemon": "^3.1.11",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "vite-plugin-db": "^0.5.0"
   },
   "engines": {
     "node": ">=18"

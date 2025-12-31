@@ -54,7 +54,7 @@ const Hero = ({ scrollToSection, handleWhatsAppClick }) => {
                         <span className="block bg-clip-text text-transparent bg-gradient-to-r from-brand-neon-green-neon via-brand-purple-400 to-brand-neon-green-neon mt-2">
                             transforma tu mente
                         </span>
-                    </div>
+                    </h1>
 
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tight leading-tight text-white drop-shadow-2xl">
                         EL EJERCICIO ES LA <br />
