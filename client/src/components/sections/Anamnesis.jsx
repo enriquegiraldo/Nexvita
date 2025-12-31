@@ -543,6 +543,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
     const topRef = useRef(null);
 
     const [formData, setFormData] = useState({
+        // Personal
         name: '',
         age: 25,
         weight: 70,
