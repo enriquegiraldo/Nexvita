@@ -1,14 +1,15 @@
 import { motion as Motion } from 'framer-motion';
-import { Menu, X, MessageCircle, Instagram, Facebook, Youtube, Twitter } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
+import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 
 const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, handleWhatsAppClick }) => {
     const navItems = ['about', 'services', 'results', 'anamnesis', 'contact'];
     
     const socialLinks = [
-        { icon: Instagram, url: 'https://instagram.com/fitdrolean', label: 'Instagram' },
-        { icon: Facebook, url: 'https://facebook.com/fitdrolean', label: 'Facebook' },
-        { icon: Youtube, url: 'https://youtube.com/@fitdrolean', label: 'YouTube' },
-        { icon: Twitter, url: 'https://twitter.com/fitdrolean', label: 'Twitter' },
+        { icon: FaInstagram, url: 'https://instagram.com/fitdrolean', label: 'Instagram', hoverColor: 'hover:text-[#E4405F]' },
+        { icon: FaFacebookF, url: 'https://facebook.com/fitdrolean', label: 'Facebook', hoverColor: 'hover:text-[#1877F2]' },
+        { icon: FaYoutube, url: 'https://youtube.com/@fitdrolean', label: 'YouTube', hoverColor: 'hover:text-[#FF0000]' },
+        { icon: FaXTwitter, url: 'https://twitter.com/fitdrolean', label: 'X (Twitter)', hoverColor: 'hover:text-white' },
     ];
 
     return (
@@ -60,9 +61,9 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, ha
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.1 }}
+                                        whileHover={{ scale: 1.15 }}
                                         whileTap={{ scale: 0.9 }}
-                                        className="text-brand-silver-400 hover:text-brand-neon-green-neon transition-colors"
+                                        className={`text-brand-silver-400 ${social.hoverColor} transition-colors`}
                                         aria-label={social.label}
                                     >
                                         <Icon size={20} />
@@ -121,9 +122,9 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen, currentSection, scrollToSection, ha
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.1 }}
+                                        whileHover={{ scale: 1.15 }}
                                         whileTap={{ scale: 0.9 }}
-                                        className="text-brand-silver-400 hover:text-brand-neon-green-neon transition-colors"
+                                        className={`text-brand-silver-400 ${social.hoverColor} transition-colors`}
                                         aria-label={social.label}
                                     >
                                         <Icon size={24} />

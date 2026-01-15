@@ -1,12 +1,59 @@
 import { motion as Motion } from 'framer-motion';
-import { Instagram, Facebook, Youtube, Twitter, MessageCircle } from 'lucide-react';
+import {
+    FaFacebookF,
+    FaInstagram,
+    FaLinkedinIn,
+    FaTelegramPlane,
+    FaTiktok,
+    FaWhatsapp,
+    FaYoutube,
+} from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = ({ handleWhatsAppClick }) => {
     const socialLinks = [
-        { icon: Instagram, url: 'https://instagram.com/fitdrolean', label: 'Instagram' },
-        { icon: Facebook, url: 'https://facebook.com/fitdrolean', label: 'Facebook' },
-        { icon: Youtube, url: 'https://youtube.com/@fitdrolean', label: 'YouTube' },
-        { icon: Twitter, url: 'https://twitter.com/fitdrolean', label: 'Twitter' },
+        {
+            icon: FaFacebookF,
+            url: 'https://facebook.com/fitdrolean',
+            label: 'Facebook',
+            hoverColor: 'hover:text-[#1877F2]'
+        },
+        {
+            icon: FaXTwitter,
+            url: 'https://twitter.com/fitdrolean',
+            label: 'X (Twitter)',
+            hoverColor: 'hover:text-white'
+        },
+        {
+            icon: FaInstagram,
+            url: 'https://instagram.com/fitdrolean',
+            label: 'Instagram',
+            hoverColor: 'hover:text-[#E4405F]'
+        },
+        {
+            icon: FaYoutube,
+            url: 'https://youtube.com/@fitdrolean',
+            label: 'YouTube',
+            hoverColor: 'hover:text-[#FF0000]'
+        },
+        {
+            icon: FaTiktok,
+            url: 'https://tiktok.com/@fitdrolean',
+            label: 'TikTok',
+            hoverColor: 'hover:text-white'
+        },
+        {
+            icon: FaTelegramPlane,
+            url: 'https://t.me/fitdrolean',
+            label: 'Telegram',
+            hoverColor: 'hover:text-[#0088CC]'
+        },
+        {
+            icon: FaLinkedinIn,
+            url: 'https://linkedin.com/company/fitdrolean',
+            label: 'LinkedIn',
+            hoverColor: 'hover:text-[#0A66C2]'
+        },
     ];
 
     return (
@@ -57,9 +104,9 @@ const Footer = ({ handleWhatsAppClick }) => {
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.1 }}
+                                        whileHover={{ scale: 1.2 }}
                                         whileTap={{ scale: 0.9 }}
-                                        className="text-brand-silver-400 hover:text-brand-neon-green-neon transition-colors"
+                                        className={`text-brand-silver-400 ${social.hoverColor} transition-colors`}
                                         aria-label={social.label}
                                     >
                                         <Icon size={24} />
@@ -71,7 +118,7 @@ const Footer = ({ handleWhatsAppClick }) => {
                             onClick={handleWhatsAppClick}
                             className="mt-4 px-4 py-2 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-lg font-medium flex items-center justify-center md:justify-end space-x-2 mx-auto md:mx-0 shadow-lg shadow-brand-purple-500/30 hover:opacity-90 transition-opacity"
                         >
-                            <MessageCircle size={18} />
+                            <FaWhatsapp size={18} />
                             <span className="text-sm">WhatsApp</span>
                         </button>
                     </div>

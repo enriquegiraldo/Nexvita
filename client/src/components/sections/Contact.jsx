@@ -1,5 +1,5 @@
 import { motion as Motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const Contact = ({ handleWhatsAppClick }) => {
     return (
@@ -43,7 +43,7 @@ const Contact = ({ handleWhatsAppClick }) => {
                         className="bg-gradient-to-br from-brand-silver-800/50 to-brand-silver-900/50 backdrop-blur-sm border border-brand-purple-600/30 rounded-2xl p-8 mx-auto max-w-md hover:border-brand-neon-green-neon/50 transition-all"
                     >
                         <div className="w-24 h-24 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-brand-purple-500/30">
-                            <MessageCircle size={32} />
+                            <FaWhatsapp size={32} />
                         </div>
 
                         <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 to-brand-purple-600">
@@ -60,7 +60,7 @@ const Contact = ({ handleWhatsAppClick }) => {
                             whileTap={{ scale: 0.95 }}
                             className="w-full px-8 py-4 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-lg font-bold text-lg flex items-center justify-center space-x-2 hover:shadow-lg hover:shadow-brand-purple-500/50 transition-all"
                         >
-                            <MessageCircle size={22} />
+                            <FaWhatsapp size={22} />
                             <span>Enviar mensaje por WhatsApp</span>
                         </Motion.button>
                     </Motion.div>
