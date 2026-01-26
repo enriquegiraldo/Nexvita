@@ -1,125 +1,62 @@
-/**
- * Controlador para manejar el envío de anamnesis atlética profesional
- * Recibe datos completos del formulario multi-paso y los valida
- */
-exports.submitAnamnesis = (req, res) => {
-    try {
-        const data = req.body;
-        
-        // Validación básica de campos obligatorios
-        const requiredFields = ['name', 'phone', 'sport', 'goal'];
-        const missingFields = requiredFields.filter(field => !data[field] || (typeof data[field] === 'string' && data[field].trim().length === 0));
-        
-        if (missingFields.length > 0) {
-            return res.status(400).json({
-                message: 'Campos obligatorios faltantes',
-                missingFields: missingFields
-            });
-        }
-
-        // Validación de tipos de datos numéricos
-        const numericFields = {
-            age: { min: 16, max: 80 },
-            weight: { min: 40, max: 150 },
-            height: { min: 140, max: 220 },
-            painLevel: { min: 0, max: 10 },
-            trainingFrequency: { min: 0, max: 14 },
-            trainingHours: { min: 0.5, max: 5 },
-            sleepHours: { min: 3, max: 12 }
-        };
-
-        for (const [field, range] of Object.entries(numericFields)) {
-            if (data[field] !== undefined && data[field] !== null && data[field] !== '') {
-                const value = Number(data[field]);
-                if (isNaN(value) || value < range.min || value > range.max) {
-                    return res.status(400).json({
-                        message: `Valor inválido para ${field}`,
-                        field: field,
-                        value: data[field],
-                        expectedRange: `${range.min}-${range.max}`
-                    });
-                }
-            }
-        }
-
-        // Preparar datos para almacenamiento
-        const anamnesisData = {
-            // Datos Personales
-            personal: {
-                name: data.name.trim(),
-                age: Number(data.age) || null,
-                weight: Number(data.weight) || null,
-                height: Number(data.height) || null,
-                phone: data.phone.trim(),
-                email: data.email?.trim() || null
-            },
-            
-            // Contexto Deportivo
-            sport: {
-                sport: data.sport.trim(),
-                position: data.position?.trim() || null,
-                level: data.level || 'Amateur',
-                dominance: data.dominance || 'Diestro',
-                experience: data.experience || 'intermediate'
-            },
-            
-            // Objetivo y Dolor
-            goals: {
-                goal: data.goal.trim(),
-                painLocation: data.painLocation?.trim() || null,
-                painLevel: Number(data.painLevel) || 0,
-                painType: data.painType || null
-            },
-            
-            // Carga de Entrenamiento
-            training: {
-                frequency: Number(data.trainingFrequency) || 0,
-                hoursPerSession: Number(data.trainingHours) || 0,
-                recentChanges: Boolean(data.recentChanges)
-            },
-            
-            // Salud y Estilo de Vida
-            health: {
-                injuries: data.injuries?.trim() || null,
-                sleepHours: Number(data.sleepHours) || null,
-                stressLevel: data.stressLevel || 'Medio'
-            },
-            
-            // Metadatos
-            metadata: {
-                submittedAt: data.submittedAt || new Date().toISOString(),
-                ip: req.ip || req.connection.remoteAddress,
-                userAgent: req.get('user-agent') || null
-            }
-        };
-
-        console.log('Anamnesis atlética recibida:', {
-            name: anamnesisData.personal.name,
-            sport: anamnesisData.sport.sport,
-            level: anamnesisData.sport.level,
-            submittedAt: anamnesisData.metadata.submittedAt
-        });
-
-        // TODO: Aquí guardarías en la base de datos
-        // Ejemplo con MongoDB:
-        // await AnamnesisModel.create(anamnesisData);
-        
-        // Ejemplo con Firebase:
-        // await db.collection('anamnesis').add(anamnesisData);
-
-        res.status(201).json({
-            message: 'Anamnesis atlética enviada exitosamente',
-            success: true,
-            data: {
-                id: `anamnesis_${Date.now()}`, // ID temporal, reemplazar con ID real de BD
-                submittedAt: anamnesisData.metadata.submittedAt
-            }
-        });
-    } catch (error) {
-        console.error('Error submitting anamnesis:', error);
-        res.status(500).json({
-            message: 'Error interno del servidor',
-            error: process.env.NODE_ENV === 'development' ? error.message : undefined
-        });
-    }
-};
+const db = require('../db'); 
+ 
+ exports.submitAnamnesis = async (req, res) => { 
+     const client = await db.connect(); 
+     try { 
+         const d = req.body; 
+         const reqFields = ['name', 'phone', 'sport', 'goal']; 
+         const miss = reqFields.filter(f => !d[f] || (typeof d[f] === 'string' && !d[f].trim())); 
+         if (miss.length) return res.status(400).json({ message: 'Campos faltantes', missingFields: miss }); 
+ 
+         const numFields = { 
+             age: [16, 80], weight: [40, 150], height: [140, 220], 
+             painLevel: [0, 10], trainingFrequency: [0, 14], 
+             trainingHours: [0.5, 5], sleepHours: [3, 12] 
+         }; 
+         for (const [f, [min, max]] of Object.entries(numFields)) { 
+             if (d[f] != null && d[f] !== '') { 
+                 const v = +d[f]; 
+                 if (isNaN(v) || v < min || v > max) 
+                     return res.status(400).json({ message: `Valor inválido para ${f}`, field: f, value: d[f], expectedRange: `${min}-${max}` }); 
+             } 
+         } 
+ 
+         await client.query('BEGIN'); 
+         const vals = [ 
+             d.name?.trim(), +d.age || null, +d.weight || null, +d.height || null, d.phone?.trim(), d.email?.trim() || null, 
+             d.sport?.trim(), d.position?.trim() || null, d.level || 'Amateur', d.dominance || 'Diestro', d.experience || 'intermediate', 
+             d.goal?.trim(), d.painLocation?.trim() || null, +d.painLevel || 0, d.painType || null, 
+             +d.trainingFrequency || 0, +d.trainingHours || 0, !!d.recentChanges, 
+             d.injuries?.trim() || null, +d.sleepHours || null, d.stressLevel || 'Medio', 
+             d.submittedAt || new Date().toISOString(), req.ip || req.connection.remoteAddress, req.get('user-agent') || null 
+         ]; 
+ 
+         const q = ` 
+             INSERT INTO anamnesis ( 
+                 name, age, weight, height, phone, email, 
+                 sport, position, level, dominance, experience, 
+                 goal, pain_location, pain_level, pain_type, 
+                 training_frequency, training_hours, recent_changes, 
+                 injuries, sleep_hours, stress_level, 
+                 submitted_at, ip_address, user_agent 
+             ) VALUES (${Array.from({ length: 24 }, (_, i) => `$${i + 1}`).join(',')}) 
+             RETURNING id, submitted_at 
+         `; 
+ 
+         const r = await client.query(q, vals); 
+         await client.query('COMMIT'); 
+ 
+         const { id, submitted_at } = r.rows[0]; 
+         console.log('Anamnesis guardada:', { id, name: d.name, sport: d.sport, level: d.level, submittedAt: submitted_at }); 
+         res.status(201).json({ message: 'Anamnesis guardada exitosamente', success: true, data: { id, submittedAt: submitted_at } }); 
+ 
+     } catch (e) { 
+         await client.query('ROLLBACK'); 
+         console.error('Error guardando anamnesis:', e); 
+         if (e.code === '23505') 
+             return res.status(409).json({ message: 'Registro duplicado', error: process.env.NODE_ENV === 'development' ? e.message : undefined }); 
+         res.status(500).json({ message: 'Error interno del servidor', error: process.env.NODE_ENV === 'development' ? e.message : undefined }); 
+     } finally { 
+         client.release(); 
+     } 
+ };

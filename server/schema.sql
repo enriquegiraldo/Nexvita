@@ -28,6 +28,10 @@ CREATE TABLE IF NOT EXISTS anamnesis (
   sleep_hours numeric(3,1),
   stress_level text,
   
+  submitted_at timestamptz,
+  ip_address text,
+  user_agent text,
+
   created_at timestamptz NOT NULL DEFAULT now(),
   CONSTRAINT anamnesis_age_check CHECK (age BETWEEN 16 AND 100),
   CONSTRAINT anamnesis_weight_check CHECK (weight BETWEEN 30 AND 300),
