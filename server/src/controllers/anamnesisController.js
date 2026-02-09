@@ -1,3 +1,4 @@
+// src/controllers/anamnesisController.js
 const db = require('../db'); 
  
  exports.submitAnamnesis = async (req, res) => { 
