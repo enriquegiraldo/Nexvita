@@ -1,18 +1,26 @@
-// src/db.js
 const { Pool } = require('pg');
+require('dotenv').config();
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  host: process.env.PGHOST,
-  port: process.env.PGPORT ? Number(process.env.PGPORT) : undefined,
-  user: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-  database: process.env.PGDATABASE,
-  ssl:
-    process.env.PGSSLMODE === 'require'
+const config = process.env.DATABASE_URL
+  ? {
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production'
       ? { rejectUnauthorized: false }
-      : undefined,
-  allowExitOnIdle: true,
-});
+      : false,
+  }
+  : {
+    host: process.env.PGHOST || 'localhost',
+    port: process.env.PGPORT || 5432,
+    database: process.env.PGDATABASE || 'anamnesis',
+    user: process.env.PGUSER || 'postgres',
+    password: process.env.PGPASSWORD || '',
+    ssl: process.env.NODE_ENV === 'production',
+  };
 
-module.exports = pool;
+const pool = new Pool(config);
+
+module.exports = {
+  connect: () => pool.connect(),
+  query: (q, p) => pool.query(q, p),
+  end: () => pool.end(),
+};

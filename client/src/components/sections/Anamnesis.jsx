@@ -675,7 +675,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
         setSubmitStatus('idle');
 
         try {
-            const base = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+            const base = import.meta.env.VITE_API_BASE_URL || '/api';
 
             const payload = {
                 ...formData,
