@@ -1,5 +1,5 @@
 // src/db.js
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -9,10 +9,10 @@ const pool = new Pool({
   password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE,
   ssl:
-    process.env.PGSSLMODE === 'require'
+    process.env.PGSSLMODE === "require"
       ? { rejectUnauthorized: false }
-      : undefined,
-  allowExitOnIdle: true,
+      : undefined
+  // allowExitOnIdle: true,
 });
 
 module.exports = pool;
