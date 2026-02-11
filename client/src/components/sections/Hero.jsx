@@ -15,7 +15,9 @@ const Hero = ({ scrollToSection, handleWhatsAppClick }) => {
                 <div 
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: 'url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")',
+                        backgroundImage: 'url("https://697ad972c4feaabd2d0fcca3.imgix.net/484318108_29416627614652310_3544601152373214830_n.jpg?w=720&h=1600&ar=720%3A1600")',
+                        
+                        
                     }}
                 >
                     {/* Dark Overlay - 60% Silver (dominant) */}

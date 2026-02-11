@@ -22,7 +22,7 @@ const About = ({ handleWhatsAppClick }) => {
                 >
                     <h2 className="text-4xl md:text-6xl font-bold mb-6">
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 via-brand-neon-green-neon to-brand-purple-600">
-                            Sobre fitdrolean
+                            Sobre FitDrolean
                         </span>
                     </h2>
                     <div className="w-32 h-1 bg-gradient-to-r from-brand-purple-500 via-brand-neon-green-neon to-brand-purple-500 mx-auto rounded-full" />
@@ -115,7 +115,7 @@ const About = ({ handleWhatsAppClick }) => {
                         </h3>
 
                         <p className="text-brand-silver-300 mb-6 text-lg leading-relaxed">
-                            En <span className="text-brand-purple-400 font-semibold">fitdrolean</span> fusionamos la disciplina del fitness con la precisión de la tecnología. No somos solo un entrenador, somos tu sistema de transformación personal que te guía desde la anamnesis inicial hasta alcanzar tus objetivos más ambiciosos.
+                            En <span className="text-brand-purple-400 font-semibold">FitDrolean</span> fusionamos la disciplina del fitness con la precisión de la tecnología. No somos solo un entrenador, somos tu sistema de transformación personal que te guía desde la anamnesis inicial hasta alcanzar tus objetivos más ambiciosos.
                         </p>
 
                         <div className="space-y-4 mb-8">
