@@ -4,12 +4,22 @@ import { useEffect } from "react"
 
 export function PWARegister() {
   useEffect(() => {
+    // Solo registrar Service Worker en producción con dominio propio
+    // Los previews de v0/Vercel no soportan SW correctamente
+    const isProduction = 
+      typeof window !== "undefined" &&
+      !window.location.hostname.includes("vusercontent.net") &&
+      !window.location.hostname.includes("localhost") &&
+      !window.location.hostname.includes("127.0.0.1")
+
+    if (!isProduction) {
+      return
+    }
+
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
         .register("/sw.js")
         .then((registration) => {
-          console.log("[v0] Service Worker registrado:", registration.scope)
-
           // Verificar actualizaciones cada hora
           setInterval(
             () => {
@@ -18,8 +28,8 @@ export function PWARegister() {
             60 * 60 * 1000,
           )
         })
-        .catch((error) => {
-          console.error("[v0] Error registrando Service Worker:", error)
+        .catch(() => {
+          // Silenciar errores en entornos donde SW no está soportado
         })
     }
   }, [])
