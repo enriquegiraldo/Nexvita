@@ -1,40 +1,43 @@
 @import "tailwindcss";
 
-/* Custom Color Palette - fitdrolean Brand */
+/* Custom Color Palette - FitDrolean Brand (Elite Mentorship) */
 @theme {
-  --color-brand-purple-50: #f3e8ff;
-  --color-brand-purple-100: #e9d5ff;
-  --color-brand-purple-200: #d8b4fe;
-  --color-brand-purple-300: #c084fc;
-  --color-brand-purple-400: #a855f7;
-  --color-brand-purple-500: #9333ea;
-  --color-brand-purple-600: #7e22ce;
-  --color-brand-purple-700: #6b21a8;
-  --color-brand-purple-800: #581c87;
-  --color-brand-purple-900: #3b0764;
-  
-  --color-brand-neon-green-50: #f0fdf4;
-  --color-brand-neon-green-100: #dcfce7;
-  --color-brand-neon-green-200: #bbf7d0;
-  --color-brand-neon-green-300: #86efac;
-  --color-brand-neon-green-400: #4ade80;
-  --color-brand-neon-green-500: #22c55e;
-  --color-brand-neon-green-600: #16a34a;
-  --color-brand-neon-green-700: #15803d;
-  --color-brand-neon-green-800: #166534;
-  --color-brand-neon-green-900: #14532d;
-  --color-brand-neon-green-neon: #39ff14;
-  
+  /* Navy Blue (Authority & Wisdom) - replaces purple */
+  --color-brand-purple-50: #e8eef6;
+  --color-brand-purple-100: #c5d5e8;
+  --color-brand-purple-200: #9fb8d9;
+  --color-brand-purple-300: #7a9bca;
+  --color-brand-purple-400: #5a82b4;
+  --color-brand-purple-500: #3d6a9f;
+  --color-brand-purple-600: #2d5588;
+  --color-brand-purple-700: #1E3A5F;
+  --color-brand-purple-800: #142d4a;
+  --color-brand-purple-900: #0A192F;
+
+  /* Amber / Gold (Energy & Success) - replaces neon green */
+  --color-brand-neon-green-50: #fffbeb;
+  --color-brand-neon-green-100: #fef3c7;
+  --color-brand-neon-green-200: #fde68a;
+  --color-brand-neon-green-300: #fcd34d;
+  --color-brand-neon-green-400: #fbbf24;
+  --color-brand-neon-green-500: #f59e0b;
+  --color-brand-neon-green-600: #d97706;
+  --color-brand-neon-green-700: #b45309;
+  --color-brand-neon-green-800: #92400e;
+  --color-brand-neon-green-900: #78350f;
+  --color-brand-neon-green-neon: #F59E0B;
+
+  /* Slate / Silver (Neutral tones) */
   --color-brand-silver-50: #f8f9fa;
   --color-brand-silver-100: #e9ecef;
   --color-brand-silver-200: #dee2e6;
   --color-brand-silver-300: #ced4da;
-  --color-brand-silver-400: #adb5bd;
-  --color-brand-silver-500: #6c757d;
-  --color-brand-silver-600: #495057;
-  --color-brand-silver-700: #343a40;
-  --color-brand-silver-800: #212529;
-  --color-brand-silver-900: #0d1117;
+  --color-brand-silver-400: #94a3b8;
+  --color-brand-silver-500: #64748b;
+  --color-brand-silver-600: #475569;
+  --color-brand-silver-700: #334155;
+  --color-brand-silver-800: #1e293b;
+  --color-brand-silver-900: #0A192F;
 }
 
 html {
@@ -42,8 +45,8 @@ html {
 }
 
 body {
-  background-color: #0d1117; /* Silver-900 as 60% dominant */
-  color: #f8f9fa; /* Silver-50 for text */
+  background-color: #0A192F;
+  color: #f8f9fa;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -53,16 +56,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d1117;
+  background: #0A192F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7e22ce; /* Purple-600 */
+  background: #2d5588;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9333ea; /* Purple-500 */
+  background: #3d6a9f;
 }
 
 /* Custom Range Slider Styles */
@@ -87,14 +90,14 @@ input[type="range"].slider::-webkit-slider-thumb {
   width: 20px;
   border-radius: 50%;
   border: 2px solid var(--color-brand-silver-200);
-  box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+  box-shadow: 0 0 10px rgba(30, 58, 95, 0.5);
   transition: all 0.2s ease;
 }
 
 input[type="range"].slider::-webkit-slider-thumb:hover {
   background: var(--color-brand-purple-400);
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(147, 51, 234, 0.7);
+  box-shadow: 0 0 15px rgba(30, 58, 95, 0.7);
 }
 
 input[type="range"].slider::-moz-range-track {
@@ -109,7 +112,7 @@ input[type="range"].slider::-moz-range-thumb {
   width: 20px;
   border-radius: 50%;
   border: 2px solid var(--color-brand-silver-200);
-  box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+  box-shadow: 0 0 10px rgba(30, 58, 95, 0.5);
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -117,7 +120,7 @@ input[type="range"].slider::-moz-range-thumb {
 input[type="range"].slider::-moz-range-thumb:hover {
   background: var(--color-brand-purple-400);
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(147, 51, 234, 0.7);
+  box-shadow: 0 0 15px rgba(30, 58, 95, 0.7);
 }
 
 /* Focus styles for accessibility */
@@ -126,6 +129,6 @@ input[type="range"].slider:focus {
 }
 
 input[type="range"].slider:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), 0 0 10px rgba(147, 51, 234, 0.5);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.8), 0 0 10px rgba(30, 58, 95, 0.5);
   border-color: var(--color-brand-neon-green-neon);
 }

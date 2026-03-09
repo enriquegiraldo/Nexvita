@@ -1,14 +1,14 @@
 import { motion as Motion } from 'framer-motion';
-import { Star, MessageCircle } from 'lucide-react';
+import { Star, Zap } from 'lucide-react';
 
-const Results = ({ handleWhatsAppClick }) => {
+const Results = ({ scrollToSection }) => {
     return (
-        <section id="results" className="py-24 px-4 relative overflow-hidden bg-[#0d1117]">
-            {/* 60% Silver Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#161b22] to-[#0d1117]" />
-            {/* 30% Purple Accents */}
+        <section id="results" className="py-24 px-4 relative overflow-hidden bg-brand-silver-900">
+            {/* Background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-silver-900 via-brand-silver-800 to-brand-silver-900" />
+            {/* Navy Accents */}
             <div className="absolute inset-0 bg-gradient-to-b from-brand-purple-900/10 to-transparent" />
-            {/* 10% Neon Green Accents */}
+            {/* Amber Accents */}
             <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-brand-neon-green-neon/5 rounded-full mix-blend-screen filter blur-3xl opacity-30" />
 
             <div className="max-w-7xl mx-auto relative">
@@ -19,7 +19,7 @@ const Results = ({ handleWhatsAppClick }) => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 via-brand-neon-green-neon to-brand-purple-600">
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-silver-50 via-brand-neon-green-neon to-brand-silver-200">
                             Resultados Reales
                         </span>
                     </h2>
@@ -40,7 +40,7 @@ const Results = ({ handleWhatsAppClick }) => {
                                 <div className="text-center p-4">
                                     <div className="w-32 h-32 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-brand-purple-500/30">
                                         <div className="w-28 h-28 bg-brand-silver-800 rounded-full border-2 border-brand-neon-green-neon flex items-center justify-center">
-                                            <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 to-brand-neon-green-neon">{index + 1}</span>
+                                            <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-silver-50 to-brand-neon-green-neon">{index + 1}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -48,17 +48,17 @@ const Results = ({ handleWhatsAppClick }) => {
 
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-2">
-                                    <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 to-brand-purple-600">
+                                    <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-silver-50 to-brand-silver-200">
                                         Cliente {index + 1}
                                     </h3>
-                                    <div className="flex text-yellow-400">
+                                    <div className="flex text-brand-neon-green-neon">
                                         {[...Array(5)].map((_, i) => (
                                             <Star key={i} size={18} fill="currentColor" />
                                         ))}
                                     </div>
                                 </div>
 
-                                <p className="text-brand-purple-400 font-medium mb-2">Perdió 15kg en 4 meses</p>
+                                <p className="text-brand-neon-green-neon font-medium mb-2">Perdió 15kg en 4 meses</p>
 
                                 <p className="text-brand-silver-300 mb-4">
                                     "El seguimiento constante y la adaptación de mi plan hizo la diferencia. Kevin entendió mis limitaciones y me guió paso a paso."
@@ -84,12 +84,12 @@ const Results = ({ handleWhatsAppClick }) => {
                         Cada transformación comienza con una decisión mental. Nuestro compromiso es guiarte en cada paso del camino con tecnología y disciplina.
                     </p>
                     <Motion.button
-                        onClick={handleWhatsAppClick}
+                        onClick={() => scrollToSection('anamnesis')}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-8 py-4 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-full font-bold text-lg flex items-center justify-center space-x-2 hover:shadow-lg hover:shadow-brand-purple-500/50 transition-all mx-auto"
+                        className="px-8 py-4 bg-gradient-to-r from-brand-neon-green-neon to-brand-neon-green-400 rounded-full font-bold text-lg text-brand-silver-900 flex items-center justify-center space-x-2 hover:shadow-lg hover:shadow-brand-neon-green-neon/50 transition-all mx-auto"
                     >
-                        <MessageCircle size={22} />
+                        <Zap size={22} />
                         <span>Inicia tu transformación</span>
                     </Motion.button>
                 </Motion.div>

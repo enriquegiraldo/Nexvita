@@ -5,8 +5,13 @@ const db = require('../db');
      const client = await db.connect(); 
      try { 
          const d = req.body; 
-         const reqFields = ['name', 'phone', 'sport', 'goal']; 
-         const miss = reqFields.filter(f => !d[f] || (typeof d[f] === 'string' && !d[f].trim())); 
+         const reqFields = ['name', 'phone', 'sport', 'goal', 'age', 'weight', 'height']; 
+         const miss = reqFields.filter((f) => {
+             const value = d[f];
+             if (value === null || value === undefined || value === '') return true;
+             if (typeof value === 'string' && !value.trim()) return true;
+             return false;
+         }); 
          if (miss.length) return res.status(400).json({ message: 'Campos faltantes', missingFields: miss }); 
  
          const numFields = { 
@@ -22,13 +27,15 @@ const db = require('../db');
              } 
          } 
  
+         const injuries = d.injuries?.trim() || 'Ninguna reportada';
+
          await client.query('BEGIN'); 
          const vals = [ 
              d.name?.trim(), +d.age || null, +d.weight || null, +d.height || null, d.phone?.trim(), d.email?.trim() || null, 
              d.sport?.trim(), d.position?.trim() || null, d.level || 'Amateur', d.dominance || 'Diestro', d.experience || 'intermediate', 
              d.goal?.trim(), d.painLocation?.trim() || null, +d.painLevel || 0, d.painType || null, 
              +d.trainingFrequency || 0, +d.trainingHours || 0, !!d.recentChanges, 
-             d.injuries?.trim() || null, +d.sleepHours || null, d.stressLevel || 'Medio', 
+             injuries, +d.sleepHours || null, d.stressLevel || 'Medio', 
              d.submittedAt || new Date().toISOString(), req.ip || req.connection.remoteAddress, req.get('user-agent') || null 
          ]; 
  
@@ -56,8 +63,37 @@ const db = require('../db');
          console.error('Error guardando anamnesis:', e); 
          if (e.code === '23505') 
              return res.status(409).json({ message: 'Registro duplicado', error: process.env.NODE_ENV === 'development' ? e.message : undefined }); 
+         if (e.code === '23502')
+             return res.status(400).json({ message: 'Falta un campo obligatorio para guardar la anamnesis', error: process.env.NODE_ENV === 'development' ? e.message : undefined });
+         if (e.code === '23514')
+             return res.status(400).json({ message: 'Uno o más valores no cumplen las reglas del formulario', error: process.env.NODE_ENV === 'development' ? e.message : undefined });
          res.status(500).json({ message: 'Error interno del servidor', error: process.env.NODE_ENV === 'development' ? e.message : undefined }); 
      } finally { 
          client.release(); 
      } 
  };
+
+exports.listAnamnesis = async (req, res) => {
+    try {
+        const result = await db.query(`
+            SELECT
+                id, name, phone, email, age, weight, height,
+                sport, position, level, dominance, experience,
+                goal, injuries, pain_location, pain_level, pain_type,
+                training_frequency, training_hours, recent_changes,
+                sleep_hours, stress_level, submitted_at, created_at
+            FROM anamnesis
+            ORDER BY created_at DESC
+            LIMIT 100
+        `);
+
+        return res.status(200).json({
+            success: true,
+            count: result.rowCount,
+            data: result.rows,
+        });
+    } catch (e) {
+        console.error('Error listando anamnesis:', e);
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};

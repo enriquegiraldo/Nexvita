@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
     Send, CheckCircle, ChevronRight, ChevronLeft,
     Activity, Dumbbell, HeartPulse, User, AlertCircle
@@ -541,6 +541,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
     const [submitStatus, setSubmitStatus] = useState('idle');
     const [errors, setErrors] = useState({});
     const topRef = useRef(null);
+    const justAdvancedRef = useRef(false);
 
     const [formData, setFormData] = useState({
         // Personal
@@ -650,6 +651,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
      */
     const nextStep = useCallback(() => {
         if (validateStep(currentStep) && currentStep < steps.length - 1) {
+            justAdvancedRef.current = true;
             setCurrentStep(prev => prev + 1);
         }
     }, [currentStep, steps.length, validateStep]);
@@ -667,6 +669,18 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Prevent accidental submission right after advancing to the last step
+        if (justAdvancedRef.current) {
+            justAdvancedRef.current = false;
+            return;
+        }
+
+        // Only submit on the last step; otherwise advance to the next step
+        if (currentStep < steps.length - 1) {
+            nextStep();
+            return;
+        }
+
         if (!validateStep(currentStep)) {
             return;
         }
@@ -675,7 +689,8 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
         setSubmitStatus('idle');
 
         try {
-            const base = import.meta.env.VITE_API_BASE_URL || '/api';
+            const rawBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim() || '/api';
+            const normalizedBaseUrl = rawBaseUrl.replace(/\/+$/, '');
 
             const payload = {
                 ...formData,
@@ -689,7 +704,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
                 submittedAt: new Date().toISOString()
             };
 
-            const res = await fetch(`${base}/anamnesis`, {
+            const res = await fetch(`${normalizedBaseUrl}/anamnesis`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -703,6 +718,9 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
             setSubmitStatus('success');
         } catch (error) {
             console.error('Error submitting:', error);
+            if (error instanceof TypeError) {
+                console.error('No se pudo conectar con el servidor. Verifica que el backend esté corriendo y la URL API sea correcta.');
+            }
             setSubmitStatus('error');
         } finally {
             setIsSubmitting(false);
@@ -734,7 +752,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
 
     if (submitStatus === 'success') {
         return (
-            <section className="py-24 px-4 min-h-[70vh] flex items-center justify-center bg-gradient-to-b from-[#0d1117] to-[#161b22]">
+            <section className="py-24 px-4 min-h-[70vh] flex items-center justify-center bg-gradient-to-b from-brand-silver-900 to-brand-silver-800">
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -771,11 +789,11 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
         <section
             ref={topRef}
             id="anamnesis"
-            className="py-20 px-4 bg-gradient-to-b from-[#0d1117] to-[#161b22] relative min-h-screen"
+            className="py-20 px-4 bg-gradient-to-b from-brand-silver-900 to-brand-silver-800 relative min-h-screen"
         >
             {/* Background decorations */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#161b22] to-[#0d1117]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-silver-900 via-brand-silver-800 to-brand-silver-900" />
                 <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-brand-purple-900/10 to-transparent" />
                 <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-brand-neon-green-neon/5 rounded-full mix-blend-screen filter blur-3xl opacity-30" />
             </div>
@@ -857,6 +875,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
                                     exit={{ opacity: 0, x: -20 }}
                                     transition={{ duration: 0.3 }}
                                 >
+
                                     {currentStep === 0 && <Step1_Personal formData={formData} handleChange={handleChange} errors={errors} />}
                                     {currentStep === 1 && <Step2_Goals formData={formData} handleChange={handleChange} errors={errors} />}
                                     {currentStep === 2 && <Step3_Training formData={formData} handleChange={handleChange} />}
@@ -900,6 +919,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
 
                             {currentStep === steps.length - 1 ? (
                                 <motion.button
+                                    key="submit-btn"
                                     type="submit"
                                     disabled={isSubmitting}
                                     whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
@@ -920,6 +940,7 @@ const Anamnesis = ({ handleWhatsAppClick }) => {
                                 </motion.button>
                             ) : (
                                 <motion.button
+                                    key="next-btn"
                                     type="button"
                                     onClick={nextStep}
                                     whileHover={{ scale: 1.05 }}

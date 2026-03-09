@@ -1,18 +1,19 @@
 import { motion as Motion } from 'framer-motion';
-import { Brain, Target, Zap, Shield, MessageCircle, ChevronRight, Eye, Rocket } from 'lucide-react';
+import { Brain, Target, Zap, Shield, ChevronRight, Eye, Rocket } from 'lucide-react';
+import kevinLeandroImg from '../../assets/kevinLeandro.svg';
 
-const About = ({ handleWhatsAppClick }) => {
+const About = ({ scrollToSection }) => {
     return (
-        <section id="about" className="py-24 px-4 relative overflow-hidden bg-[#0d1117]">
-            {/* 60% Silver Background - Dominant */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#161b22] to-[#0d1117]" />
-            
-            {/* 30% Purple Accents */}
+        <section id="about" className="py-24 px-4 relative overflow-hidden bg-brand-silver-900">
+            {/* Background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-silver-900 via-brand-silver-800 to-brand-silver-900" />
+
+            {/* Navy Accents */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand-purple-900/10 via-transparent to-brand-purple-800/5" />
-            
-            {/* 10% Neon Green Accents */}
+
+            {/* Amber Accents */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-brand-neon-green-neon/5 rounded-full mix-blend-screen filter blur-3xl opacity-30" />
-            
+
             <div className="max-w-7xl mx-auto relative">
                 <Motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -21,7 +22,7 @@ const About = ({ handleWhatsAppClick }) => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 via-brand-neon-green-neon to-brand-purple-600">
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-silver-50 via-brand-neon-green-neon to-brand-silver-200">
                             Sobre FitDrolean
                         </span>
                     </h2>
@@ -41,7 +42,7 @@ const About = ({ handleWhatsAppClick }) => {
                             <div className="p-3 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-lg">
                                 <Eye size={28} className="text-white" />
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 to-brand-purple-600">
+                            <h3 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-silver-50 to-brand-silver-200">
                                 Visión
                             </h3>
                         </div>
@@ -73,35 +74,53 @@ const About = ({ handleWhatsAppClick }) => {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12 items-center">
+                    
                     <Motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         className="relative"
                     >
-                        {/* Profile Image Placeholder */}
+                        {/* Profile Container */}
                         <div className="relative">
+                            {/* Efecto Glow Externo */}
                             <div className="absolute -inset-4 bg-gradient-to-r from-brand-purple-600 to-brand-neon-green-neon rounded-3xl opacity-20 blur-xl" />
+                            
+                            {/* Contenedor Principal */}
                             <div className="relative bg-gradient-to-br from-brand-silver-900 to-brand-silver-800 border-2 border-brand-purple-500/30 rounded-3xl overflow-hidden">
-                                <div className="aspect-square flex items-center justify-center">
-                                    <div className="text-center p-8">
+                                
+                                {/* Imagen de fondo */}
+                                <div 
+                                    className="aspect-square flex items-center justify-center bg-cover bg-center relative"
+                                    style={{ 
+                                        backgroundImage: `url(${kevinLeandroImg})`,
+                                    }}
+                                >
+                                    {/* Overlay */}
+                                    <div className="absolute inset-0 bg-black/50" />
+
+                                    {/* Contenido */}
+                                    <div className="text-center p-8 relative z-10">
+                                        {/* Círculo con la 'K' */}
                                         <div className="w-48 h-48 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-brand-purple-500/30">
-                                            <div className="w-40 h-40 bg-brand-silver-800 rounded-full border-2 border-brand-neon-green-neon flex items-center justify-center">
+                                            <div className="w-40 h-40 bg-brand-silver-800/90 rounded-full border-2 border-brand-neon-green-neon flex items-center justify-center backdrop-blur-sm">
                                                 <span className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 to-brand-neon-green-neon">
                                                     K
                                                 </span>
                                             </div>
                                         </div>
-                                        <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 to-brand-neon-green-neon">
-                                            Kevin Drolean
+                                        
+                                        {/* Nombre y Título */}
+                                        <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-silver-50 to-brand-neon-green-neon">
+                                            Kevin Leandro Drolean
                                         </h3>
-                                        <p className="text-brand-silver-400 mt-2">Entrenador & Fundador</p>
+                                        <p className="text-brand-silver-400 mt-2 font-medium">Entrenador & Fundador</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Decorative Elements - 10% Neon Green */}
+                        {/* Elemento Decorativo */}
                         <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-brand-neon-green-neon/20 rounded-full mix-blend-screen filter blur-2xl opacity-40" />
                     </Motion.div>
 
@@ -110,12 +129,12 @@ const About = ({ handleWhatsAppClick }) => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 via-brand-neon-green-neon to-brand-purple-600">
+                        <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-brand-silver-50 via-brand-neon-green-neon to-brand-silver-200">
                             Transformación tecnológica humana
                         </h3>
 
                         <p className="text-brand-silver-300 mb-6 text-lg leading-relaxed">
-                            En <span className="text-brand-purple-400 font-semibold">FitDrolean</span> fusionamos la disciplina del fitness con la precisión de la tecnología. No somos solo un entrenador, somos tu sistema de transformación personal que te guía desde la anamnesis inicial hasta alcanzar tus objetivos más ambiciosos.
+                            En <span className="text-brand-neon-green-neon font-semibold">FitDrolean</span> fusionamos la disciplina del fitness con la precisión de la tecnología. No somos solo un entrenador, somos tu sistema de transformación personal que te guía desde la anamnesis inicial hasta alcanzar tus objetivos más ambiciosos.
                         </p>
 
                         <div className="space-y-4 mb-8">
@@ -142,13 +161,13 @@ const About = ({ handleWhatsAppClick }) => {
                         </div>
 
                         <Motion.button
-                            onClick={handleWhatsAppClick}
+                            onClick={() => scrollToSection('anamnesis')}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="mt-6 px-6 py-3 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-lg font-medium flex items-center space-x-2 hover:shadow-lg hover:shadow-brand-purple-500/50 transition-all"
+                            className="mt-6 px-6 py-3 bg-gradient-to-r from-brand-neon-green-neon to-brand-neon-green-400 rounded-lg font-medium text-brand-silver-900 flex items-center space-x-2 hover:shadow-lg hover:shadow-brand-neon-green-neon/50 transition-all"
                         >
-                            <MessageCircle size={20} />
-                            <span>Conversemos por WhatsApp</span>
+                            <Zap size={20} />
+                            <span>Comenzar Ahora</span>
                             <ChevronRight size={18} />
                         </Motion.button>
                     </Motion.div>

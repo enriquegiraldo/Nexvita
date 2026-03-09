@@ -15,7 +15,7 @@ const App = () => {
 
   // WhatsApp click handler with pre-filled message
   const handleWhatsAppClick = () => {
-    const message = "Hola fitdrolean, me gustaría información sobre tus planes de entrenamiento.";
+    const message = "Hola FitDrolean, me gustaría información sobre tus planes de entrenamiento.";
     const whatsappUrl = `https://wa.me/573107553317?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -55,33 +55,29 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0d1117] text-white font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-brand-silver-900 text-white font-sans overflow-x-hidden">
       <Navbar
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         currentSection={currentSection}
         scrollToSection={scrollToSection}
-        handleWhatsAppClick={handleWhatsAppClick}
       />
 
-      <Hero
-        scrollToSection={scrollToSection}
-        handleWhatsAppClick={handleWhatsAppClick}
-      />
+      <Hero scrollToSection={scrollToSection} />
 
-      <About handleWhatsAppClick={handleWhatsAppClick} />
+      <About scrollToSection={scrollToSection} />
 
-      <Services handleWhatsAppClick={handleWhatsAppClick} />
+      <Services scrollToSection={scrollToSection} />
 
-      <Results handleWhatsAppClick={handleWhatsAppClick} />
+      <Results scrollToSection={scrollToSection} />
 
       <Anamnesis handleWhatsAppClick={handleWhatsAppClick} />
 
-      <Contact handleWhatsAppClick={handleWhatsAppClick} />
+      <Contact />
 
       <WhatsAppButton handleWhatsAppClick={handleWhatsAppClick} />
 
-      <Footer handleWhatsAppClick={handleWhatsAppClick} />
+      <Footer />
     </div>
   );
 };

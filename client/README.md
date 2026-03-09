@@ -14,3 +14,17 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## API configuration
+
+Create a `.env` file based on `.env.example` and define:
+
+`VITE_API_BASE_URL=/api`
+
+- In development, `/api` uses the Vite proxy configured in `vite.config.js` and forwards requests to `http://localhost:3000`.
+- In production, set `VITE_API_BASE_URL` to your public backend URL (for example: `https://api.yourdomain.com/api`).
+
+### Deployment note (Vercel / Firebase)
+
+- If frontend and backend are served from the same domain, keep `VITE_API_BASE_URL=/api`.
+- If backend is in a different domain, define `VITE_API_BASE_URL` in your hosting environment variables (do not hardcode it in source).

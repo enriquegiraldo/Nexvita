@@ -5,59 +5,58 @@ import {
     FaLinkedinIn,
     FaTelegramPlane,
     FaTiktok,
-    FaWhatsapp,
     FaYoutube,
 } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
-const Footer = ({ handleWhatsAppClick }) => {
+const Footer = () => {
     const socialLinks = [
         {
             icon: FaFacebookF,
-            url: 'https://facebook.com/fitdrolean',
+            url: 'https://facebook.com/FitDrolean',
             label: 'Facebook',
             hoverColor: 'hover:text-[#1877F2]'
         },
         {
             icon: FaXTwitter,
-            url: 'https://twitter.com/fitdrolean',
+            url: 'https://twitter.com/FitDrolean',
             label: 'X (Twitter)',
             hoverColor: 'hover:text-white'
         },
         {
             icon: FaInstagram,
-            url: 'https://instagram.com/fitdrolean',
+            url: 'https://instagram.com/FitDrolean',
             label: 'Instagram',
             hoverColor: 'hover:text-[#E4405F]'
         },
         {
             icon: FaYoutube,
-            url: 'https://youtube.com/@fitdrolean',
+            url: 'https://youtube.com/@FitDrolean',
             label: 'YouTube',
             hoverColor: 'hover:text-[#FF0000]'
         },
         {
             icon: FaTiktok,
-            url: 'https://tiktok.com/@fitdrolean',
+            url: 'https://tiktok.com/@FitDrolean',
             label: 'TikTok',
             hoverColor: 'hover:text-white'
         },
         {
             icon: FaTelegramPlane,
-            url: 'https://t.me/fitdrolean',
+            url: 'https://t.me/FitDrolean',
             label: 'Telegram',
             hoverColor: 'hover:text-[#0088CC]'
         },
         {
             icon: FaLinkedinIn,
-            url: 'https://linkedin.com/company/fitdrolean',
+            url: 'https://linkedin.com/company/FitDrolean',
             label: 'LinkedIn',
             hoverColor: 'hover:text-[#0A66C2]'
         },
     ];
 
     return (
-        <footer className="py-12 px-4 bg-gradient-to-t from-[#0d1117] to-[#161b22] border-t border-brand-purple-600/30">
+        <footer className="py-12 px-4 bg-gradient-to-t from-brand-silver-900 to-brand-silver-800 border-t border-brand-purple-600/30">
             <div className="max-w-7xl mx-auto">
                 <div className="grid md:grid-cols-3 gap-8 mb-8">
                     {/* Brand Section */}
@@ -67,11 +66,14 @@ const Footer = ({ handleWhatsAppClick }) => {
                                 <span className="font-bold text-white text-xl">F</span>
                             </div>
                             <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 via-brand-neon-green-neon to-brand-purple-600">
-                                fitdrolean
+                                FitDrolean
                             </span>
                         </div>
                         <p className="text-brand-silver-400 text-sm">
                             Transformación tecnológica humana. Tu sistema de entrenamiento personalizado.
+                        </p>
+                        <p className="text-brand-silver-500 text-sm mt-2">
+                            📞 +57 310 755 3317
                         </p>
                     </div>
 
@@ -83,7 +85,7 @@ const Footer = ({ handleWhatsAppClick }) => {
                                 <li key={link}>
                                     <a
                                         href={`#${link}`}
-                                        className="text-brand-silver-400 hover:text-brand-purple-400 transition-colors text-sm"
+                                        className="text-brand-silver-400 hover:text-brand-neon-green-neon transition-colors text-sm"
                                     >
                                         {link.charAt(0).toUpperCase() + link.slice(1)}
                                     </a>
@@ -114,19 +116,12 @@ const Footer = ({ handleWhatsAppClick }) => {
                                 );
                             })}
                         </div>
-                        <button
-                            onClick={handleWhatsAppClick}
-                            className="mt-4 px-4 py-2 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-lg font-medium flex items-center justify-center md:justify-end space-x-2 mx-auto md:mx-0 shadow-lg shadow-brand-purple-500/30 hover:opacity-90 transition-opacity"
-                        >
-                            <FaWhatsapp size={18} />
-                            <span className="text-sm">WhatsApp</span>
-                        </button>
                     </div>
                 </div>
 
                 <div className="border-t border-brand-silver-700 pt-6 text-center">
                     <p className="text-brand-silver-400 mb-2">
-                        fitdrolean © {new Date().getFullYear()} - Transformación tecnológica humana
+                        FitDrolean © {new Date().getFullYear()} - Transformación tecnológica humana
                     </p>
                     <p className="text-brand-silver-500 text-xs max-w-2xl mx-auto">
                         Todos los derechos reservados. Los resultados pueden variar dependiendo del compromiso y seguimiento del plan personalizado.
