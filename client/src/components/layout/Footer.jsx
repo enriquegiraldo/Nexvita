@@ -1,58 +1,22 @@
 import { motion as Motion } from 'framer-motion';
-import {
-    FaFacebookF,
-    FaInstagram,
-    FaLinkedinIn,
-    FaTelegramPlane,
-    FaTiktok,
-    FaYoutube,
-} from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
     const socialLinks = [
-        {
-            icon: FaFacebookF,
-            url: 'https://facebook.com/FitDrolean',
-            label: 'Facebook',
-            hoverColor: 'hover:text-[#1877F2]'
-        },
-        {
-            icon: FaXTwitter,
-            url: 'https://twitter.com/FitDrolean',
-            label: 'X (Twitter)',
-            hoverColor: 'hover:text-white'
-        },
-        {
-            icon: FaInstagram,
-            url: 'https://instagram.com/FitDrolean',
-            label: 'Instagram',
-            hoverColor: 'hover:text-[#E4405F]'
-        },
-        {
-            icon: FaYoutube,
-            url: 'https://youtube.com/@FitDrolean',
-            label: 'YouTube',
-            hoverColor: 'hover:text-[#FF0000]'
-        },
-        {
-            icon: FaTiktok,
-            url: 'https://tiktok.com/@FitDrolean',
-            label: 'TikTok',
-            hoverColor: 'hover:text-white'
-        },
-        {
-            icon: FaTelegramPlane,
-            url: 'https://t.me/FitDrolean',
-            label: 'Telegram',
-            hoverColor: 'hover:text-[#0088CC]'
-        },
-        {
-            icon: FaLinkedinIn,
-            url: 'https://linkedin.com/company/FitDrolean',
-            label: 'LinkedIn',
-            hoverColor: 'hover:text-[#0A66C2]'
-        },
+        { icon: FaInstagram, url: 'https://instagram.com/FitDrolean', label: 'Instagram', hoverColor: 'hover:text-[#E4405F]' },
+        { icon: FaFacebookF, url: 'https://facebook.com/FitDrolean', label: 'Facebook', hoverColor: 'hover:text-[#1877F2]' },
+        { icon: FaYoutube, url: 'https://youtube.com/@FitDrolean', label: 'YouTube', hoverColor: 'hover:text-[#FF0000]' },
+        { icon: FaXTwitter, url: 'https://twitter.com/FitDrolean', label: 'X (Twitter)', hoverColor: 'hover:text-white' },
+    ];
+
+    const quickLinks = [
+        { id: 'hero', label: 'Inicio' },
+        { id: 'about', label: 'Mi Historia' },
+        { id: 'services', label: 'Servicios' },
+        { id: 'results', label: 'Resultados' },
+        { id: 'anamnesis', label: 'Anamnesis' },
+        { id: 'contact', label: 'Contacto' },
     ];
 
     return (
@@ -63,14 +27,14 @@ const Footer = () => {
                     <div className="text-center md:text-left">
                         <div className="flex items-center justify-center md:justify-start space-x-3 mb-4">
                             <div className="w-12 h-12 bg-gradient-to-r from-brand-purple-600 to-brand-purple-400 rounded-lg flex items-center justify-center shadow-lg shadow-brand-purple-500/30">
-                                <span className="font-bold text-white text-xl">F</span>
+                                <span className="font-bold text-white text-lg">KL</span>
                             </div>
                             <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-brand-purple-400 via-brand-neon-green-neon to-brand-purple-600">
-                                FitDrolean
+                                Kevin Leandro Fitness
                             </span>
                         </div>
                         <p className="text-brand-silver-400 text-sm">
-                            Transformación tecnológica humana. Tu sistema de entrenamiento personalizado.
+                            Entrenador personal especialista en Calistenia y Gym. Tu transformación comienza aquí.
                         </p>
                         <p className="text-brand-silver-500 text-sm mt-2">
                             📞 +57 310 755 3317
@@ -81,13 +45,13 @@ const Footer = () => {
                     <div className="text-center">
                         <h3 className="font-semibold text-brand-silver-200 mb-4">Enlaces Rápidos</h3>
                         <ul className="space-y-2">
-                            {['about', 'services', 'results', 'anamnesis', 'contact'].map((link) => (
-                                <li key={link}>
+                            {quickLinks.map((link) => (
+                                <li key={link.id}>
                                     <a
-                                        href={`#${link}`}
+                                        href={`#${link.id}`}
                                         className="text-brand-silver-400 hover:text-brand-neon-green-neon transition-colors text-sm"
                                     >
-                                        {link.charAt(0).toUpperCase() + link.slice(1)}
+                                        {link.label}
                                     </a>
                                 </li>
                             ))}
@@ -116,17 +80,24 @@ const Footer = () => {
                                 );
                             })}
                         </div>
+                        <div className="mt-4 text-brand-silver-500 text-sm space-y-1">
+                            <p>Instagram: @FitDrolean</p>
+                            <p>Facebook: FitDrolean</p>
+                            <p>YouTube: @FitDrolean</p>
+                        </div>
                     </div>
                 </div>
 
                 <div className="border-t border-brand-silver-700 pt-6 text-center">
                     <p className="text-brand-silver-400 mb-2">
-                        FitDrolean © {new Date().getFullYear()} - Transformación tecnológica humana
+                        © 2025 Kevin Leandro Fitness. Todos los derechos reservados.
                     </p>
                     <p className="text-brand-silver-500 text-xs max-w-2xl mx-auto">
-                        Todos los derechos reservados. Los resultados pueden variar dependiendo del compromiso y seguimiento del plan personalizado.
+                        Los resultados pueden variar dependiendo del compromiso y seguimiento del plan personalizado.
                     </p>
                 </div>
+
+                {/* TODO: Futuras secciones — Yoga, Meditación, otros servicios wellness */}
             </div>
         </footer>
     );

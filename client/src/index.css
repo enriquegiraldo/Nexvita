@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
-/* Custom Color Palette - FitDrolean Brand (Elite Mentorship) */
+/* Custom Color Palette - Kevin Leandro Fitness Brand */
 @theme {
-  /* Navy Blue (Authority & Wisdom) - replaces purple */
-  --color-brand-purple-50: #e8eef6;
-  --color-brand-purple-100: #c5d5e8;
-  --color-brand-purple-200: #9fb8d9;
-  --color-brand-purple-300: #7a9bca;
-  --color-brand-purple-400: #5a82b4;
-  --color-brand-purple-500: #3d6a9f;
-  --color-brand-purple-600: #2d5588;
-  --color-brand-purple-700: #1E3A5F;
-  --color-brand-purple-800: #142d4a;
-  --color-brand-purple-900: #0A192F;
+  /* Deep Purple (Primary #4B0082) */
+  --color-brand-purple-50: #f3e8ff;
+  --color-brand-purple-100: #e2c6ff;
+  --color-brand-purple-200: #c98eff;
+  --color-brand-purple-300: #a855f7;
+  --color-brand-purple-400: #8b31d9;
+  --color-brand-purple-500: #6b21a8;
+  --color-brand-purple-600: #4B0082;
+  --color-brand-purple-700: #3b0066;
+  --color-brand-purple-800: #2a004d;
+  --color-brand-purple-900: #1a0033;
 
-  /* Amber / Gold (Energy & Success) - replaces neon green */
-  --color-brand-neon-green-50: #fffbeb;
-  --color-brand-neon-green-100: #fef3c7;
-  --color-brand-neon-green-200: #fde68a;
-  --color-brand-neon-green-300: #fcd34d;
-  --color-brand-neon-green-400: #fbbf24;
-  --color-brand-neon-green-500: #f59e0b;
-  --color-brand-neon-green-600: #d97706;
-  --color-brand-neon-green-700: #b45309;
-  --color-brand-neon-green-800: #92400e;
-  --color-brand-neon-green-900: #78350f;
-  --color-brand-neon-green-neon: #F59E0B;
+  /* Neon Green (Accent #39FF14) */
+  --color-brand-neon-green-50: #edffd6;
+  --color-brand-neon-green-100: #d4ffaa;
+  --color-brand-neon-green-200: #b0ff6e;
+  --color-brand-neon-green-300: #7dff33;
+  --color-brand-neon-green-400: #50ff1a;
+  --color-brand-neon-green-500: #33e000;
+  --color-brand-neon-green-600: #28b300;
+  --color-brand-neon-green-700: #1f8a00;
+  --color-brand-neon-green-800: #166600;
+  --color-brand-neon-green-900: #0d4000;
+  --color-brand-neon-green-neon: #39FF14;
 
-  /* Slate / Silver (Neutral tones) */
+  /* Neutral / Silver tones */
   --color-brand-silver-50: #f8f9fa;
   --color-brand-silver-100: #e9ecef;
   --color-brand-silver-200: #dee2e6;
@@ -37,7 +37,7 @@
   --color-brand-silver-600: #475569;
   --color-brand-silver-700: #334155;
   --color-brand-silver-800: #1e293b;
-  --color-brand-silver-900: #0A192F;
+  --color-brand-silver-900: #0d1117;
 }
 
 html {
@@ -45,7 +45,7 @@ html {
 }
 
 body {
-  background-color: #0A192F;
+  background-color: #0d1117;
   color: #f8f9fa;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
@@ -56,16 +56,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A192F;
+  background: #0d1117;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2d5588;
+  background: #4B0082;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3d6a9f;
+  background: #6b21a8;
 }
 
 /* Custom Range Slider Styles */
@@ -85,19 +85,19 @@ input[type="range"].slider::-webkit-slider-track {
 input[type="range"].slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  background: var(--color-brand-purple-500);
+  background: var(--color-brand-purple-600);
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  border: 2px solid var(--color-brand-silver-200);
-  box-shadow: 0 0 10px rgba(30, 58, 95, 0.5);
+  border: 2px solid var(--color-brand-neon-green-neon);
+  box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
   transition: all 0.2s ease;
 }
 
 input[type="range"].slider::-webkit-slider-thumb:hover {
-  background: var(--color-brand-purple-400);
+  background: var(--color-brand-purple-500);
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(30, 58, 95, 0.7);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
 }
 
 input[type="range"].slider::-moz-range-track {
@@ -107,20 +107,20 @@ input[type="range"].slider::-moz-range-track {
 }
 
 input[type="range"].slider::-moz-range-thumb {
-  background: var(--color-brand-purple-500);
+  background: var(--color-brand-purple-600);
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  border: 2px solid var(--color-brand-silver-200);
-  box-shadow: 0 0 10px rgba(30, 58, 95, 0.5);
+  border: 2px solid var(--color-brand-neon-green-neon);
+  box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 input[type="range"].slider::-moz-range-thumb:hover {
-  background: var(--color-brand-purple-400);
+  background: var(--color-brand-purple-500);
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(30, 58, 95, 0.7);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
 }
 
 /* Focus styles for accessibility */
@@ -129,6 +129,6 @@ input[type="range"].slider:focus {
 }
 
 input[type="range"].slider:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.8), 0 0 10px rgba(30, 58, 95, 0.5);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), 0 0 10px rgba(75, 0, 130, 0.5);
   border-color: var(--color-brand-neon-green-neon);
 }
